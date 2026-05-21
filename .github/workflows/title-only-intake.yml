@@ -1,0 +1,49 @@
+name: Acknowledge title-only intake
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+      - edited
+
+permissions:
+  issues: write
+
+jobs:
+  acknowledge:
+    if: github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment when an issue only has a title
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          BODY="$(jq -r '.issue.body // empty' "$GITHUB_EVENT_PATH")"
+          if [[ -n "${BODY//[[:space:]]/}" ]]; then
+            echo "Issue includes a body; skipping title-only acknowledgement."
+            exit 0
+          fi
+
+          COMMENTS_URL="https://api.github.com/repos/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments"
+          if curl -fsSL \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "${COMMENTS_URL}" \
+            | jq -e '.[] | select(.body | contains("<!-- title-only-intake -->"))' >/dev/null; then
+            echo "Title-only acknowledgement already exists."
+            exit 0
+          fi
+
+          jq -n \
+            --arg body "<!-- title-only-intake -->\nThanks for the quick title-only work request — the title is enough for intake, and the repo will treat it as a valid starting brief for follow-up processing." \
+            '{body: $body}' \
+            | curl -fsSL \
+                -X POST \
+                -H "Authorization: Bearer ${GH_TOKEN}" \
+                -H "Accept: application/vnd.github+json" \
+                -H "Content-Type: application/json" \
+                "${COMMENTS_URL}" \
+                -d @-
