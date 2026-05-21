@@ -20,6 +20,11 @@ describe('App', () => {
         name: /show up for your dog, your shelter, and your neighbors/i,
       }),
     ).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', {
+        name: /the market is ready for a launch-quality dog community platform/i,
+      }),
+    ).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /join the pack/i })).toHaveAttribute(
       'href',
       '#membership',

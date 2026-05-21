@@ -1,13 +1,14 @@
 # K9 Community
 
-K9 Community is a polished single-page website for a dog-focused community hub. It highlights local programs, rescue support, upcoming events, and membership perks in a fast Vite + React + TypeScript app.
+K9 Community is a ship-to-market dog-community website built with Vite, React, and TypeScript. The project now includes a research-backed launch surface, title-only issue intake automation, and the documentation expected for a fuller revvel-standard delivery.
 
 ## Features
 
-- Responsive landing page with clear navigation and calls to action
-- Program, event, membership, testimonial, and FAQ sections
+- Responsive landing page with clear navigation, launch-model, membership, partner, and CTA sections
+- Research-backed messaging for the market opportunity and go-to-market story
 - Title-only issue intake acknowledgement workflow for lightweight work requests
 - Focused UI smoke test with Vitest and Testing Library
+- Deployment, brand, security, changelog, and go-to-market documentation
 
 ## Getting started
 
@@ -22,6 +23,21 @@ npm run dev
 - `npm run lint` — run ESLint
 - `npm run test` — run the focused test suite
 - `npm run build` — create a production build
+
+## Ship-to-market docs
+
+- `CHANGELOG.md`
+- `DEPLOYMENT_GUIDE.md`
+- `GO_TO_MARKET.md`
+- `BRAND_GUIDELINES.md`
+- `SECURITY.md`
+- `validate.py`
+
+Run the repository validation checklist with:
+
+```bash
+python validate.py
+```
 
 ## Automation
 
