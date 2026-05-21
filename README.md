@@ -25,4 +25,4 @@ npm run dev
 
 ## Automation
 
-Title-only issues are treated as valid intake. `.github/scitor.yaml` pins Scitor to GitHub Issues, and `.github/workflows/title-only-intake.yml` posts an acknowledgement when a work request arrives without a body.
+Scitor is the repository's support-intake bridge that turns incoming requests into GitHub issues. Title-only issues are treated as valid intake here: `.github/scitor.yaml` pins Scitor to GitHub Issues, and `.github/workflows/title-only-intake.yml` posts an acknowledgement when a work request arrives without a body.
