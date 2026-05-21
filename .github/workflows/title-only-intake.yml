@@ -21,7 +21,7 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           REPOSITORY: ${{ github.repository }}
         run: |
-          BODY="$(jq -r '.issue.body // ""' "$GITHUB_EVENT_PATH")"
+          BODY="$(jq -r '.issue.body // empty' "$GITHUB_EVENT_PATH")"
           if [[ -n "${BODY//[[:space:]]/}" ]]; then
             echo "Issue includes a body; skipping title-only acknowledgement."
             exit 0
