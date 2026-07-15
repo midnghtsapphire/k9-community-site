@@ -1,5 +1,9 @@
 # K9 Community
 
+
+<!-- AUTO-PACKAGE-BADGES:START -->
+
+<!-- AUTO-PACKAGE-BADGES:END -->
 K9 Community is a ship-to-market dog-community website built with Vite, React, and TypeScript. The project now includes a research-backed launch surface, title-only issue intake automation, and the documentation expected for a fuller revvel-standard delivery.
 
 ## Features
